@@ -281,7 +281,7 @@ namespace TrainProcess
 			return (MEMORY_BASIC_INFORMATION[])locations.ToArray(typeof(MEMORY_BASIC_INFORMATION));
 		}
 		
-		public IntPtr[] FindInMemory(byte[] Needle, long MinimumAddress=0, long MaximumAddress=0x7fffffff) {
+		public IntPtr[] FindInMemory(byte[] Needle, long MinimumAddress=0, long MaximumAddress=long.MaxValue) {
 			ArrayList Locations = new ArrayList();
 			
 			MEMORY_BASIC_INFORMATION[] MemoryRegions = GetMemoryRegions();
@@ -300,28 +300,39 @@ namespace TrainProcess
 		}
 		
 		public IntPtr[] FindInMemoryRegion(byte[] Needle, MEMORY_BASIC_INFORMATION MemoryRegion) {
-			ArrayList Locations = new ArrayList();
-			
 			byte[] Memory = ReadMemoryRegion(MemoryRegion);
+			
+			long[] ByteLocations = FindInBytes(Needle, Memory);
+
+			IntPtr[] Locations = new IntPtr[ByteLocations.LongLength];
+			for(long index = 0; index < ByteLocations.LongLength; index++) {
+				Locations[index] = (IntPtr)((long)MemoryRegion.BaseAddress+ByteLocations[index]);
+			}
+			
+			return Locations;
+		}
+		
+		public long[] FindInBytes(byte[] Needle, byte[] Bytes) {
+			ArrayList Locations = new ArrayList();
 			
 			// Loop through each byte in the memory region and start searching,
 			// But don't bother with the bit at the end that's too short.
-			for(long indexMemory = 0; indexMemory < (Memory.Length-(Needle.Length-1)); indexMemory++) {
+			for(long indexBytes = 0; indexBytes < (Bytes.Length-(Needle.Length-1)); indexBytes++) {
 				// Check that each byte matches
 				bool Match = true;
 				for(long indexNeedle = 0; indexNeedle < Needle.Length; indexNeedle++) {
-					if(Memory[indexMemory+indexNeedle] != Needle[indexNeedle]) {
+					if(Bytes[indexBytes+indexNeedle] != Needle[indexNeedle]) {
 						Match = false;
 						break;
 					}
 				}
 				
-				if(Match) {
-					Locations.Add((IntPtr)((long)MemoryRegion.BaseAddress+indexMemory));
+				if(Match == true) {
+					Locations.Add(indexBytes);
 				}
 			}
 			
-			return (IntPtr[])Locations.ToArray(typeof(IntPtr));
+			return (long[])Locations.ToArray(typeof(long));
 		}
 		
 		public byte[] ReadMemoryRegion(MEMORY_BASIC_INFORMATION MemoryRegion) {

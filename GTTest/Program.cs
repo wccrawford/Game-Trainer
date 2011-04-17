@@ -38,12 +38,36 @@ namespace GTTest
 			
 			Console.WriteLine("Opened successfully!");
 			
-			if(args.Length >= 2) {
-				byte[] memory = Conversion.HexToBytes(args[1]);
-				IntPtr[] Locations = targetProcess.FindInMemory(memory, 200000000, 300000000);
+			if(args.Length == 3) {
+				if(args[1] == "find") {
+					byte[] memory = Conversion.HexToBytes(args[2]);
+					IntPtr[] Locations = targetProcess.FindInMemory(memory, 0, long.MaxValue);
+					
+					foreach(IntPtr Location in Locations) {
+						Console.WriteLine(Location);
+					}
+				}
 				
-				foreach(IntPtr Location in Locations) {
-					Console.WriteLine(Location);
+				if(args[1] == "read") {
+					byte[] memory = targetProcess.ReadMemory((IntPtr)long.Parse(args[2]), 4);
+					
+					foreach(byte byt in memory) {
+						Console.WriteLine(byt);
+					}
+				}
+			}
+			
+			if (args.Length == 4) {
+				if(args[1] == "replace") {
+					byte[] oldBytes = Conversion.HexToBytes(args[2]);
+					byte[] newBytes = Conversion.HexToBytes(args[3]);
+					
+					IntPtr[] Locations = targetProcess.FindInMemory(oldBytes);
+					
+					foreach(IntPtr Location in Locations) {
+						Console.WriteLine(Location);
+						targetProcess.WriteMemory(Location, newBytes);
+					}
 				}
 			}
 			
