@@ -218,7 +218,6 @@ namespace TrainProcess
 		/// <returns>true if successful</returns>
 		public bool WriteHackSet(TFHackSet HackSet)
 		{
-			
 			return WriteHackValues(HackSet.HackValues);
 		}
 
@@ -247,7 +246,45 @@ namespace TrainProcess
 		/// <returns>True if successful</returns>
 		public bool WriteHackValue(TFHackValue HackValue)
 		{
-			return WriteMemory(HackValue.Address, HackValue.NewBytes);
+			if((long)HackValue.Address == 0) {
+				if(HackValue.OldBytes.Length > 0) {
+					IntPtr[] Addresses = FindInMemory(HackValue.OldBytes, HackValue.MinimumAddress, HackValue.MaximumAddress);
+					if(Addresses.Length > 0) {
+						HackValue.Address = Addresses[0];
+					} else {
+						Console.WriteLine("Failed to find old bytes.");
+						Addresses = FindInMemory(HackValue.NewBytes, HackValue.MinimumAddress, HackValue.MaximumAddress);
+						if(Addresses.Length > 0) {
+							HackValue.Address = Addresses[0];
+							HackValue.Active = true;
+						} else {
+							Console.WriteLine("Failed to find new bytes.");
+							return false;
+						}
+					}
+				} else {
+					return false;
+				}
+			}
+
+			Console.WriteLine(HackValue.Address);
+			
+			bool result = false;			
+			if(HackValue.Active) {
+				result = WriteMemory(HackValue.Address, HackValue.OldBytes);
+				if(result) {
+					Console.WriteLine("Deactivated.");
+					HackValue.Active = false;
+				}
+				return result;
+			} else {
+				result = WriteMemory(HackValue.Address, HackValue.NewBytes);
+				if(result) {
+					Console.WriteLine("Activated.");
+					HackValue.Active = true;
+				}
+			}
+			return result;
 		}
 		
 		/// <summary>
