@@ -47,25 +47,11 @@ namespace TrainProcess
 		{
 			get
 			{
-				String NewBytes = "";
-				for (int x=0; x < NewBytes.Length; x++)
-				{
-					if (x > 0)
-					{
-						NewBytes += " ";
-					}
-					NewBytes += String.Format("{0:x2}",NewBytes[x]);
-				}
-				return NewBytes;
+				return Conversion.BytesToHex(NewBytes);
 			}
 			set
 			{
-				String[] bytes = value.Split(' ');
-				NewBytes = new byte[bytes.Length];
-				for (int x=0; x < bytes.Length; x++)
-				{
-					NewBytes[x] = Convert.ToByte(bytes[x], 16);
-				}
+				NewBytes = Conversion.HexToBytes(value);
 			}
 		}
 		

@@ -38,19 +38,8 @@ namespace GTTest
 			
 			Console.WriteLine("Opened successfully!");
 			
-//			MEMORY_BASIC_INFORMATION[] locations = targetProcess.GetMemoryRegions();
-			
-//			foreach(MEMORY_BASIC_INFORMATION location in locations) {
-//				Console.WriteLine("{0}-{1} : {2} bytes", location.BaseAddress,
-//				                  (uint)location.BaseAddress + (uint)location.RegionSize, location.RegionSize);
-//			}
-			
 			if(args.Length >= 2) {
-				byte[] memory = targetProcess.ReadMemory((IntPtr)long.Parse(args[1]), 4);
-				foreach(byte membyte in memory) {
-					Console.WriteLine(membyte);
-				}
-				
+				byte[] memory = Conversion.HexToBytes(args[1]);
 				IntPtr[] Locations = targetProcess.FindInMemory(memory, 200000000, 300000000);
 				
 				foreach(IntPtr Location in Locations) {
