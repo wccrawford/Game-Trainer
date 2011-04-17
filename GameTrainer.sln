@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 4.0.0.7070
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTExecutor", "GTExecutor\GTExecutor.csproj", "{FDD200EF-9A17-453B-9DE4-40B64D58DBDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTLibrary", "GTLibrary\GTLibrary.csproj", "{4D27A2AD-ADF8-4DD7-A488-282C126E3341}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTTest", "GTTest\GTTest.csproj", "{7510FB87-3718-43EE-9719-0D97F87C19F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FDD200EF-9A17-453B-9DE4-40B64D58DBDF}.Debug|x86.Build.0 = Debug|x86
+		{FDD200EF-9A17-453B-9DE4-40B64D58DBDF}.Debug|x86.ActiveCfg = Debug|x86
+		{FDD200EF-9A17-453B-9DE4-40B64D58DBDF}.Release|x86.Build.0 = Release|x86
+		{FDD200EF-9A17-453B-9DE4-40B64D58DBDF}.Release|x86.ActiveCfg = Release|x86
+		{4D27A2AD-ADF8-4DD7-A488-282C126E3341}.Debug|x86.Build.0 = Debug|x86
+		{4D27A2AD-ADF8-4DD7-A488-282C126E3341}.Debug|x86.ActiveCfg = Debug|x86
+		{4D27A2AD-ADF8-4DD7-A488-282C126E3341}.Release|x86.Build.0 = Release|x86
+		{4D27A2AD-ADF8-4DD7-A488-282C126E3341}.Release|x86.ActiveCfg = Release|x86
+		{7510FB87-3718-43EE-9719-0D97F87C19F5}.Debug|x86.Build.0 = Debug|x86
+		{7510FB87-3718-43EE-9719-0D97F87C19F5}.Debug|x86.ActiveCfg = Debug|x86
+		{7510FB87-3718-43EE-9719-0D97F87C19F5}.Release|x86.Build.0 = Release|x86
+		{7510FB87-3718-43EE-9719-0D97F87C19F5}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+EndGlobal
