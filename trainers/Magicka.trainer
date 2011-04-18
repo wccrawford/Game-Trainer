@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-16"?>
+<hackinfo>
+	<gamename>Magicka</gamename>
+	<processname>magicka</processname>
+	<version>1.3.6.0</version>
+	<hacks>
+		<hack>
+			<name>Infinite Stoneskin</name>
+			<key>113</key>
+			<hacksets>
+				<hackset>
+					<hackvalues>
+						<hackvalue>
+							<bytes>90 90 90 d9 5e 10 d9 46 10 d9 46 0c</bytes>
+							<oldbytes>d8 6e 10 d9 5e 10 d9 46 10 d9 46 0c</oldbytes>
+							<maximumaddress>1fffffff</maximumaddress>
+						</hackvalue>
+					</hackvalues>
+				</hackset>
+			</hacksets>
+		</hack>
+	</hacks>
+</hackinfo>

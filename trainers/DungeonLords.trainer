@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-16"?>
+<hackinfo>
+  <gamename>Dungeon Lords</gamename>
+  <processname>dlords</processname>
+  <version>1.2</version>
+  <hacks><hack>
+  <name>Infinite Health</name>
+  <key>113</key>
+  <hacksets><hackset>
+  <hackvalues><hackvalue>
+  <address>005bc30a</address>
+  <bytes>83 ff 00 74 07 66 89 87 9a 5a f1 02 c3</bytes>
+</hackvalue><hackvalue>
+  <address>0041aefb</address>
+  <bytes>e8 0a 14 1a 00 90 90</bytes>
+</hackvalue><hackvalue>
+  <address>00484286</address>
+  <bytes>90 90 90 90 90 90</bytes>
+</hackvalue><hackvalue>
+  <address>0048438b</address>
+  <bytes>90 90</bytes>
+</hackvalue><hackvalue>
+  <address>00488e27</address>
+  <bytes>90 90 90 90 90 90</bytes>
+</hackvalue></hackvalues>
+</hackset><hackset>
+  <hackvalues><hackvalue>
+  <address>0041aefb</address>
+  <bytes>66 89 87 9a 5a f1 02</bytes>
+</hackvalue><hackvalue>
+  <address>00484286</address>
+  <bytes>89 8a 7a 03 00 00</bytes>
+</hackvalue><hackvalue>
+  <address>0048438b</address>
+  <bytes>89 31</bytes>
+</hackvalue><hackvalue>
+  <address>00488e27</address>
+  <bytes>89 8f 9a 5a f1 02</bytes>
+</hackvalue></hackvalues>
+</hackset></hacksets>
+</hack></hacks>
+</hackinfo>
