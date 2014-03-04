@@ -1,1 +1,7 @@
 Used to create game trainers.  Comes with a executor that will read XML files.
+
+This is old code that worked better before Windows 7.  Now, many games use some kind of dynamic memory 
+allocation and it's a lot harder to find the code you need to NOP or replace.  Still, it worked last
+time I needed it to.
+
+Code is not licensed, so it can't be distributed in any form, except by me, via this site.
